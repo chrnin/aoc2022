@@ -1,14 +1,13 @@
 import Data.List.Split
 import Data.List
+import Text.Printf
 
 main :: IO ()
 main = do 
   input <- readFile "input"
   let (e1:e2:e3:es) = calories input
-  print("part1:")
-  print(e1)
-  print("part2:")
-  print(e1+e2+e3)
+  printf "part 1: %d\n" e1
+  printf "part 2: %d\n" (e1+e2+e3)
 
 calories :: String -> [Integer]
 calories input = sortBy (flip compare) (map sum (map toInt (map lines (splitOn "\n\n" input))))
