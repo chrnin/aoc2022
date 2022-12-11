@@ -6,8 +6,10 @@ main = do
   let signals = exec (lines input) 1
   printf "part1: %d\n" (strength signals)
   let picture = lighten signals 1
+  printf "part2: \n"
   putStr (printPicture picture 0)
-  
+  printf "\n"
+
 strength :: [Integer] -> Integer
 strength signals = ((head (take 1 (drop 19 signals)))*20)+
   ((head (take 1 (drop 59 signals)))*60)+
