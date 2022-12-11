@@ -38,13 +38,8 @@ path ((x,y):ss) (startX, startY) = ((startX, startY):(path ss (startX+x, startY+
 path [] (startX, startY) = [(startX, startY)]
 
 follow :: (Int, Int) -> (Int, Int) -> (Int, Int)
-follow (hx, hy) (tx, ty) = do
-  if ((abs (tx - hx)) <=1 && (abs (ty - hy)) <=1) 
-    then (tx,ty)
-    else moveTail (hx,hy) (tx,ty)
-
-moveTail :: (Int, Int) -> (Int, Int) -> (Int, Int)
-moveTail (hx, hy) (tx, ty) 
+follow (hx, hy) (tx, ty) 
+  | ((abs (tx - hx)) <=1 && (abs (ty - hy)) <=1) = (tx,ty)
   | hx == tx = (tx, ty + ((hy-ty) `div` (abs (hy-ty))))
   | hy == ty = (tx + ((hx-tx) `div` (abs (hx-tx))), ty)
   | otherwise = (tx + ((hx-tx) `div` (abs (hx-tx))), ty + ((hy-ty) `div` (abs (hy-ty))))
